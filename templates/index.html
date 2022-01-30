@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books API</title>
+</head>
+<body>
+    <h1>A Flask REST API Used to do CRUD Actions on excel sheets parsed from Wiki table</h1>  
+    <br>        
+    <h2>The API has 2 stages, First you upload the file generated from the wiki parser then you can access the API to do CRUD operations</h2>
+    <hr>
+    <br>    
+
+    <h2>Part I (Upload file)</h2>
+    <ul>
+        <li>This is a mandatory stage in order use the CRUD operations via the API</li>
+        <li>This is a POST method that can be done by CURL, Postman or any tool/app that can send HTTP responses</li>
+        <li>File can be uploaded via 'rooturl/upload' with a 'file' argument containing the file path</li>
+    </ul>    
+    <p style="color:blue ; font-weight:bold">How To:</p>
+    <p>An example to upload a file via curl would be like command below bearing in mind that you need to replace 
+        (path - extension - url) with the actual values</p>
+        <ul>
+            <li>curl -X POST -F "file=@path.extension" "url/upload"</li>
+          </ul>
+
+    <hr>
+    <br>        
+    <h2>Part II CRUD operations</h2>      
+    <p>After uploading the file all CRUD operations will be available via the /api route</p>
+
+    <br>        
+    <h3>Part 2.1 GET Reuqest</h3>   
+    <ul>
+        <li>Availabe via the base url 'url/api'</li>
+        <li>Retrieves all table data in the excel file and return it as a JSON string</li>
+        <li>This is a GET method that can be done by CURL, Postman or any tool/app that can send HTTP responses</li>
+    </ul> 
+    <p style="color:blue ; font-weight:bold">How To:</p>
+    <p>An example to make a get request via curl would be like command below bearing in mind that you need to replace 
+        (url) with the actual value</p>
+    <ul>
+        <li>curl url/api</li>
+    </ul>
+
+    <br>        
+    <h3>Part 2.2 POST Reuqest</h3>   
+    <ul>
+        <li>Availabe via the base url 'url/api'</li>
+        <li>Appends an additional entry to table of books</li>
+        <li>This is a POST method that can be done by CURL, Postman or any tool/app that can send HTTP responses</li>
+        <li>Request should include these arguments [novel,author,country] </li>
+    </ul> 
+    <p style="color:blue ; font-weight:bold">How To:</p>
+    <p>An example to make a post request via curl would be like command below bearing in mind that you need to replace 
+        (url - novelname - authorname - countryname) with the actual values</p>
+    <ul>
+        <li>curl -X POST -d novel=novelname -d author=authorname -d country=countryname url/api</li>
+    </ul>
+
+    <br>        
+    <h3>Part 2.3 PUT Reuqest</h3>   
+    <ul>
+        <li>Availabe via the base url 'url/api'</li>
+        <li>Edit an existing entry to table of books using book ID or create it if ID not found</li>
+        <li>This is a PUT method that can be done by CURL, Postman or any tool/app that can send HTTP responses</li>
+        <li>Request should include these arguments [bookno,novel,author,country] </li>
+    </ul> 
+    <p style="color:blue ; font-weight:bold">How To:</p>
+    <p>An example to make a put request via curl would be like command below bearing in mind that you need to replace 
+        (url - booknumber - novelname - authorname - countryname) with the actual values</p>
+    <ul>
+        <li>curl -X PUT -d bookno=booknumber -d novel=novelname -d author=authorname -d country=countryname  url/api</li>
+    </ul>
+
+    <br>        
+    <h3>Part 2.3 DELETE Reuqest</h3>   
+    <ul>
+        <li>Availabe via the base url 'url/api'</li>
+        <li>Delete an existing entry to table of books using book ID or do nothing if ID not found</li>
+        <li>This is a DELETE method that can be done by CURL, Postman or any tool/app that can send HTTP responses</li>
+        <li>Request should include this argument [bookno] </li>
+    </ul> 
+    <p style="color:blue ; font-weight:bold">How To:</p>
+    <p>An example to make a delete request via curl would be like command below bearing in mind that you need to replace 
+        (url - booknumber) with the actual values</p>
+    <ul>
+        <li>curl -X DELETE -d bookno=booknumber url/api</li>
+    </ul>
+
+</body>
+</html>
